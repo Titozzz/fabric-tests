@@ -17,7 +17,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import NativeAnswerSolver from './js/NativeAnswerSolver';
-// import Button from 'react-native/Libraries/Components/Button';
+import Button from 'react-native/Libraries/Components/Button';
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -52,20 +52,18 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  console.log(NativeAnswerSolver)
-
-  // const onPress = () => {
-  //   const theAnswer =
-  //     NativeAnswerSolver?.answerTheUltimateQuestion(
-  //       "What's the Answer to the Ultimate Question of Life, the Universe, and Everything",
-  //     ) || '';
-  //   console.log('The answer is: ' + theAnswer);
-  // };
+  const onPress = () => {
+    const theAnswer =
+      NativeAnswerSolver?.answerTheUltimateQuestion(
+        "What's the Answer to the Ultimate Question of Life, the Universe, and Everything",
+      ) || '';
+    console.log('The answer is: ' + theAnswer);
+  };
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      {/* <Button title="Click to invoke your Turbo Module!" onPress={onPress} /> */}
+      <Button title="Click to invoke your Turbo Module!" onPress={onPress} />
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
