@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,7 +17,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import NativeAnswerSolver from './js/NativeAnswerSolver';
-import Button from 'react-native/Libraries/Components/Button';
+import {Button} from 'react-native';
+import { AnswerViewerViewType } from './js/NativeAnswerViewer';
+import AnswerViewer, {Commands as AnswerViewerCommands} from './js/NativeAnswerViewer';
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -52,18 +54,25 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const ref = useRef<React.ElementRef<AnswerViewerViewType> | null>(null);
+  const [step, setStep] = useState(1);
+
+
   const onPress = () => {
     const theAnswer =
       NativeAnswerSolver?.answerTheUltimateQuestion(
         "What's the Answer to the Ultimate Question of Life, the Universe, and Everything",
       ) || '';
     console.log('The answer is: ' + theAnswer);
+    setStep(step+1);
+    AnswerViewerCommands.changeBackgroundColor(ref.current, "red");
   };
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Button title="Click to invoke your Turbo Module!" onPress={onPress} />
+      <AnswerViewer ref={ref} style={{width: "100%", height: 50}} color="yellow" step={step} />
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
