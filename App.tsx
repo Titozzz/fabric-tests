@@ -1,13 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import type {Node} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -25,8 +16,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import NativeAnswerSolver from './js/NativeAnswerSolver';
+// import Button from 'react-native/Libraries/Components/Button';
 
-const Section = ({children, title}): Node => {
+const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -52,16 +45,28 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  console.log(NativeAnswerSolver)
+
+  // const onPress = () => {
+  //   const theAnswer =
+  //     NativeAnswerSolver?.answerTheUltimateQuestion(
+  //       "What's the Answer to the Ultimate Question of Life, the Universe, and Everything",
+  //     ) || '';
+  //   console.log('The answer is: ' + theAnswer);
+  // };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      {/* <Button title="Click to invoke your Turbo Module!" onPress={onPress} /> */}
+
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>

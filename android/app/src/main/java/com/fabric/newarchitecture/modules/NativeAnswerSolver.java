@@ -1,4 +1,4 @@
-package com.fabric.modules;
+package com.fabric.newarchitecture.modules;
 
 import androidx.annotation.NonNull;
 
